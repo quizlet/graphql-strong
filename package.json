@@ -32,39 +32,25 @@
     "build"
   ],
   "scripts": {
-    "preversion": "npm run ci",
-    "prepublish": "npm run build",
+    "preversion": "yarn ci",
+    "prepublish": "yarn build",
     "lint": "tslint 'src/**/*.ts'",
     "test": "jest",
     "test-watch": "jest --watch",
-    "ci": "npm run lint && npm run test",
+    "ci": "yarn lint && yarn test",
     "build": "rm -rf build && tsc"
   },
   "peerDependencies": {
     "graphql": ">=0.6.0 <1.0.0"
   },
   "devDependencies": {
-    "@types/graphql": "^0.8.2",
-    "@types/jest": "^16.0.1",
-    "@types/node": "^6.0.52",
-    "graphql": "^0.8.2",
-    "jest": "^19.0.2",
-    "tslint": "^4.5.1",
+    "@types/graphql": "^0.11.7",
+    "@types/jest": "^22.0.1",
+    "@types/node": "^9.3.0",
+    "graphql": "^0.12.3",
+    "jest": "^22.0.4",
+    "ts-jest": "^22.0.1",
+    "tslint": "^5.8.0",
     "typescript": "^2.2.1"
-  },
-  "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "ts"
-    ],
-    "transform": {
-      ".ts": "<rootDir>/resources/jest-ts-transform.js"
-    },
-    "testRegex": "/__tests__/[^.]+-test.ts$",
-    "browser": false,
-    "testEnvironment": "node"
   }
 }
