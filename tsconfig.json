@@ -1,19 +1,21 @@
 {
   "compilerOptions": {
-    "outDir": "build",
-    "rootDir": "src",
-    "target": "es6",
-    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "newLine": "LF",
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "newLine": "LF",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "strictNullChecks": true
+    "outDir": "build",
+    "rootDir": "src",
+    "strict": true,
+    "strictNullChecks": true,
+    "target": "es6",
   },
   "exclude": [
     "node_modules",
