@@ -1,4 +1,4 @@
-import { GraphQLInputType, GraphQLOutputType, GraphQLInputObjectType, GraphQLObjectType, GraphQLEnumType } from 'graphql';
+import { GraphQLInputType, GraphQLOutputType, GraphQLInputObjectType, GraphQLObjectType, GraphQLEnumType } from 'graphql/type';
 import { StrongInputType, StrongOutputType, wrapWeakType } from '../../index';
 
 const anyType: any = null;
