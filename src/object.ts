@@ -23,6 +23,7 @@ export function createObjectType<TValue, TContext>(config: StrongObjectTypeConfi
 export type StrongObjectTypeConfig<TValue, TContext> = {
   readonly name: string,
   readonly description?: string | undefined,
+  readonly isTypeOf?: (value: any, context: TContext) => boolean;
 };
 
 /**

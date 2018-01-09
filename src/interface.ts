@@ -35,12 +35,12 @@ export type StrongInterfaceFieldMap = {
 
 /**
  * The configuration object to be used when creating interface types. It
- * requires `resolveType` and `fields`.
+ * requires  `fields`.
  */
 export type StrongInterfaceTypeConfig<TValue, TFieldMap extends StrongInterfaceFieldMap> = {
   readonly name: string,
   readonly description?: string | undefined,
-  readonly resolveType: (value: TValue) => StrongObjectType<TValue, never>,
+  readonly resolveType?: (value: TValue) => StrongObjectType<TValue, never>,
   readonly fields: StrongInterfaceFieldMapConfig<TFieldMap>,
 };
 
@@ -135,7 +135,9 @@ implements StrongOutputType<TValue | null | undefined> {
     super({
       name: config.name,
       description: config.description,
-      resolveType: value => config.resolveType(value).ofType,
+      resolveType: typeof config.resolveType === 'function'
+        ? value => config.resolveType(value).ofType
+        : undefined,
       // Compute our fields from the fields map we were provided in the config.
       // The format we define in our config is pretty similar to the format
       // GraphQL.js expects.
