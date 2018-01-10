@@ -49,7 +49,7 @@
     "no-shadowed-variable": true,
     "no-unsafe-finally": true,
     "no-unused-expression": true,
-    "no-use-before-declare": true,
+    "no-use-before-declare": false,
     "no-var-keyword": true,
     "radix": true,
     "restrict-plus-operands": false,
