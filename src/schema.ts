@@ -50,7 +50,7 @@ extends GraphQLSchema {
       ].filter(Boolean);
 
       rootTypes.forEach(rootType => {
-        const fields = rootType.getFields();
+        const fields = rootType!.getFields();
 
         for (const fieldName of Object.keys(fields)) {
           const resolver = fields[fieldName].resolve || defaultFieldResolver;

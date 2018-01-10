@@ -1,13 +1,10 @@
 import { GraphQLList, GraphQLNonNull } from 'graphql';
-import { StrongInputType, StrongOutputType, StrongInputOutputType } from './type';
+import { StrongInputOutputType } from './type';
 
 /**
  * Creates a strong list type where the inner type is whatever GraphQL strong
  * type is passed in.
  */
-export function createListType<TValue>(type: StrongInputOutputType<TValue>): StrongInputOutputType<Array<TValue>>;
-export function createListType<TValue>(type: StrongInputType<TValue>): StrongInputType<Array<TValue>>;
-export function createListType<TValue>(type: StrongOutputType<TValue>): StrongOutputType<Array<TValue>>;
 export function createListType<TValue>(type: StrongInputOutputType<TValue>): StrongInputOutputType<Array<TValue>> {
   const nullableListType: StrongInputOutputType<Array<TValue> | null | undefined> = {
     _strongType: true,
@@ -29,5 +26,5 @@ export function createListType<TValue>(type: StrongInputOutputType<TValue>): Str
     getWeakOutputType: () => new GraphQLNonNull(new GraphQLList(type.getWeakOutputType())),
     nullable: () => nullableListType,
   };
-  return listType;
+  return listType as any;
 }

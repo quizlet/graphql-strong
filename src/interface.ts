@@ -136,13 +136,13 @@ implements StrongOutputType<TValue | null | undefined> {
       name: config.name,
       description: config.description,
       resolveType: typeof config.resolveType === 'function'
-        ? value => config.resolveType(value).ofType
+        ? value => config.resolveType!(value).ofType
         : undefined,
       // Compute our fields from the fields map we were provided in the config.
       // The format we define in our config is pretty similar to the format
       // GraphQL.js expects.
-      fields: (): GraphQLFieldConfigMap<TValue, never> => {
-        const weakFields: GraphQLFieldConfigMap<TValue, never> = {};
+      fields: (): GraphQLFieldConfigMap<TValue, any> => {
+        const weakFields: GraphQLFieldConfigMap<TValue, any> = {};
         for (const fieldName of Object.keys(config.fields)) {
           const fieldConfig = config.fields[fieldName];
           weakFields[fieldName] = {

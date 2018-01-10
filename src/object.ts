@@ -23,7 +23,7 @@ export function createObjectType<TValue, TContext>(config: StrongObjectTypeConfi
 export type StrongObjectTypeConfig<TValue, TContext> = {
   readonly name: string,
   readonly description?: string | undefined,
-  readonly isTypeOf?: (value: any, context: TContext) => boolean;
+  readonly isTypeOf?: (value: TValue | any, context: TContext) => boolean;
 };
 
 /**
@@ -266,7 +266,7 @@ implements StrongOutputType<TValue | null | undefined> {
       [...this._strongFieldConfigs, trimDescriptionsInConfig({
         ...config,
         type: () => typeof config.type === 'function' ? config.type().nullable() : config.type.nullable(),
-      })],
+      }) as any],
     );
   }
 
@@ -279,7 +279,7 @@ implements StrongOutputType<TValue | null | undefined> {
     return new StrongNullableObjectType(
       this._strongConfig,
       this._strongInterfaces,
-      [...this._strongFieldConfigs, trimDescriptionsInConfig(config)],
+      [...this._strongFieldConfigs, trimDescriptionsInConfig(config) as any],
     );
   }
 

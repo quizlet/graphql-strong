@@ -38,7 +38,7 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "ci": "yarn lint && yarn test",
-    "build": "rm -rf build && tsc"
+    "build": "rm -rf build && tsc --pretty"
   },
   "peerDependencies": {
     "graphql": ">=0.6.0 <1.0.0"
