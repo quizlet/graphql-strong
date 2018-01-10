@@ -34,7 +34,7 @@
   "scripts": {
     "preversion": "yarn ci",
     "prepublish": "yarn build",
-    "lint": "tslint 'src/**/*.ts'",
+    "lint": "tslint --project tsconfig.json",
     "test": "jest",
     "test-watch": "jest --watch",
     "ci": "yarn lint && yarn test",
