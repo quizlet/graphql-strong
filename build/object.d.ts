@@ -124,7 +124,7 @@ export declare class StrongNullableObjectType<TValue, TContext> extends GraphQLO
     private readonly _strongConfig;
     private readonly _strongInterfaces;
     private readonly _strongFieldConfigs;
-    constructor(config: StrongObjectTypeConfig<TValue, TContext>, interfaces: Array<StrongInterfaceType<TValue, {}>>, fieldConfigs: Array<StrongFieldConfig<TValue, {}, TContext, any>>);
+    constructor(config: StrongObjectTypeConfig<TValue, TContext>, interfaces: Array<StrongInterfaceType<TValue, {}>>, fieldConfigs: Array<StrongFieldConfig<TValue, any, TContext, any>>);
     getWeakType(): this;
     getWeakOutputType(): this;
     /**
@@ -149,7 +149,7 @@ export declare class StrongNullableObjectType<TValue, TContext> extends GraphQLO
      * This method is a private implementation detail and should not be used
      * outside of `StrongObjectType`!
      */
-    _field<TFieldValue, TArgs>(config: StrongFieldConfig<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongNullableObjectType<TValue, TContext>;
+    _field<TFieldValue, TArgs extends {}>(config: StrongFieldConfig<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongNullableObjectType<TValue, TContext>;
     /**
      * This method is a private implementation detail and should not be used
      * outside of `StrongObjectType`!

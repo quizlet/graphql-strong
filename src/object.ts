@@ -103,8 +103,8 @@ implements StrongOutputType<TValue> {
    * The field created will have a nullable type. To get a non-null field type
    * use `fieldNonNull`.
    */
-  public field<TFieldValue>(config: StrongFieldConfigWithoutArgs<TValue, TContext, TFieldValue | null | undefined>): StrongObjectType<TValue, TContext>
-  public field<TFieldValue, TArgs>(config: StrongFieldConfigWithArgs<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongObjectType<TValue, TContext>
+  public field<TFieldValue>(config: StrongFieldConfigWithoutArgs<TValue, TContext, TFieldValue | null | undefined>): StrongObjectType<TValue, TContext>;
+  public field<TFieldValue, TArgs>(config: StrongFieldConfigWithArgs<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongObjectType<TValue, TContext>;
   public field<TFieldValue, TArgs>(config: StrongFieldConfig<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongObjectType<TValue, TContext> {
     return new StrongObjectType(this.ofType._field(config));
   }
@@ -113,8 +113,8 @@ implements StrongOutputType<TValue> {
    * Returns a new strong GraphQL object type with a new field. This function
    * does not mutate the type it was called on.
    */
-  public fieldNonNull<TFieldValue>(config: StrongFieldConfigWithoutArgs<TValue, TContext, TFieldValue>): StrongObjectType<TValue, TContext>
-  public fieldNonNull<TFieldValue, TArgs>(config: StrongFieldConfigWithArgs<TValue, TArgs, TContext, TFieldValue>): StrongObjectType<TValue, TContext>
+  public fieldNonNull<TFieldValue>(config: StrongFieldConfigWithoutArgs<TValue, TContext, TFieldValue>): StrongObjectType<TValue, TContext>;
+  public fieldNonNull<TFieldValue, TArgs>(config: StrongFieldConfigWithArgs<TValue, TArgs, TContext, TFieldValue>): StrongObjectType<TValue, TContext>;
   public fieldNonNull<TFieldValue, TArgs>(config: StrongFieldConfig<TValue, TArgs, TContext, TFieldValue>): StrongObjectType<TValue, TContext> {
     return new StrongObjectType(this.ofType._fieldNonNull(config));
   }
@@ -181,12 +181,12 @@ implements StrongOutputType<TValue | null | undefined> {
 
   private readonly _strongConfig: StrongObjectTypeConfig<TValue, TContext>;
   private readonly _strongInterfaces: Array<StrongInterfaceType<TValue, {}>>;
-  private readonly _strongFieldConfigs: Array<StrongFieldConfig<TValue, {}, TContext, any>>;
+  private readonly _strongFieldConfigs: Array<StrongFieldConfig<TValue, any, TContext, any>>;
 
   constructor(
     config: StrongObjectTypeConfig<TValue, TContext>,
     interfaces: Array<StrongInterfaceType<TValue, {}>>,
-    fieldConfigs: Array<StrongFieldConfig<TValue, {}, TContext, any>>,
+    fieldConfigs: Array<StrongFieldConfig<TValue, any, TContext, any>>,
   ) {
     super({
       name: config.name,
@@ -258,7 +258,7 @@ implements StrongOutputType<TValue | null | undefined> {
    * This method is a private implementation detail and should not be used
    * outside of `StrongObjectType`!
    */
-  public _field <TFieldValue, TArgs>(config: StrongFieldConfig<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongNullableObjectType<TValue, TContext> {
+  public _field <TFieldValue, TArgs extends {}>(config: StrongFieldConfig<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongNullableObjectType<TValue, TContext> {
     this._assertUniqueFieldName(config.name);
     return new StrongNullableObjectType(
       this._strongConfig,
@@ -266,7 +266,7 @@ implements StrongOutputType<TValue | null | undefined> {
       [...this._strongFieldConfigs, trimDescriptionsInConfig({
         ...config,
         type: () => typeof config.type === 'function' ? config.type().nullable() : config.type.nullable(),
-      }) as any],
+      })],
     );
   }
 
@@ -279,7 +279,7 @@ implements StrongOutputType<TValue | null | undefined> {
     return new StrongNullableObjectType(
       this._strongConfig,
       this._strongInterfaces,
-      [...this._strongFieldConfigs, trimDescriptionsInConfig(config) as any],
+      [...this._strongFieldConfigs, trimDescriptionsInConfig(config)],
     );
   }
 
@@ -295,7 +295,7 @@ implements StrongOutputType<TValue | null | undefined> {
     const fieldConfigMap = interfaceType._getFieldConfigMap();
     // Create all of the object fields from our interface fields and the
     // implementation argument.
-    const fieldConfigs = Object.keys(fieldConfigMap).map<StrongFieldConfig<TValue, {}, TContext, {}>>(fieldName => {
+    const fieldConfigs = Object.keys(fieldConfigMap).map<StrongFieldConfig<TValue, any, TContext, {}>>(fieldName => {
       // Make sure that this interface field name has not already been taken.
       this._assertUniqueFieldName(fieldName);
       // Get what we will need to create this field.

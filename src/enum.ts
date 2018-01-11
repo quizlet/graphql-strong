@@ -54,7 +54,7 @@ implements StrongInputOutputType<TValue> {
 }
 
 /**
- * The nullable sstrong GraphQL enum type object.
+ * The nullable strong GraphQL enum type object.
  */
 class StrongNullableEnumType<TValue>
 extends GraphQLEnumType

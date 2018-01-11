@@ -79,7 +79,7 @@ implements StrongInputOutputType<TInternalValue> {
 }
 
 /**
- * The nullable sstrong GraphQL scalar type object.
+ * The nullable strong GraphQL scalar type object.
  */
 class StrongNullableScalarType<TInternalValue, TExternalValue>
 extends GraphQLScalarType

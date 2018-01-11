@@ -33,7 +33,7 @@ class StrongEnumType extends graphql_1.GraphQLNonNull {
     }
 }
 /**
- * The nullable sstrong GraphQL enum type object.
+ * The nullable strong GraphQL enum type object.
  */
 class StrongNullableEnumType extends graphql_1.GraphQLEnumType {
     constructor(config) {

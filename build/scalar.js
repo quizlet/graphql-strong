@@ -30,7 +30,7 @@ class StrongScalarType extends graphql_1.GraphQLNonNull {
     }
 }
 /**
- * The nullable sstrong GraphQL scalar type object.
+ * The nullable strong GraphQL scalar type object.
  */
 class StrongNullableScalarType extends graphql_1.GraphQLScalarType {
     constructor(config) {
