@@ -258,7 +258,7 @@ implements StrongOutputType<TValue | null | undefined> {
    * This method is a private implementation detail and should not be used
    * outside of `StrongObjectType`!
    */
-  public _field <TFieldValue, TArgs extends {}>(config: StrongFieldConfig<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongNullableObjectType<TValue, TContext> {
+  public _field <TFieldValue, TArgs>(config: StrongFieldConfig<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongNullableObjectType<TValue, TContext> {
     this._assertUniqueFieldName(config.name);
     return new StrongNullableObjectType(
       this._strongConfig,

@@ -149,7 +149,7 @@ export declare class StrongNullableObjectType<TValue, TContext> extends GraphQLO
      * This method is a private implementation detail and should not be used
      * outside of `StrongObjectType`!
      */
-    _field<TFieldValue, TArgs extends {}>(config: StrongFieldConfig<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongNullableObjectType<TValue, TContext>;
+    _field<TFieldValue, TArgs>(config: StrongFieldConfig<TValue, TArgs, TContext, TFieldValue | null | undefined>): StrongNullableObjectType<TValue, TContext>;
     /**
      * This method is a private implementation detail and should not be used
      * outside of `StrongObjectType`!
